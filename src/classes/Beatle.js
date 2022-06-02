@@ -20,12 +20,10 @@ class Beatle{
     }
 
     get fitness(){
-        return new Promise(async(resolve) =>{
+        return new Promise((resolve) =>{
             let redCompared = this.#red > this.enviroment[0] ? (this.#red - this.enviroment[0]): (this.#red - this.enviroment[0])*-1;
             let greenCompared = this.#green > this.enviroment[1] ? (this.#green - this.enviroment[1]): (this.#green - this.enviroment[1])*-1;
             let blueCompared = this.#blue > this.enviroment[2] ? (this.#blue - this.enviroment[2]): (this.#blue - this.enviroment[2])*-1;
-
-            console.log("redCompared",redCompared)
 
             let totalValue = redCompared + greenCompared + blueCompared;
 
@@ -47,7 +45,21 @@ class Beatle{
     }
 
     async mutate(){
-
+        const indexOfChange = Math.floor(Math.random() * 3);
+        
+        switch (indexOfChange) {
+            case 0:
+                this.#red = Math.floor(Math.random() * 256);
+                break;
+            case 1:
+                this.#green = Math.floor(Math.random() * 256);
+                break;
+            case 2:
+                this.#blue = Math.floor(Math.random() * 256);
+                break;
+            default:
+                break;
+        }
     }
 
 }
