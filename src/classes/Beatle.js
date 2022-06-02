@@ -2,11 +2,17 @@ class Beatle{
     #red;
     #green;
     #blue;
-    constructor(color, enviroment){
-        this.#red = color ? color[0] : Math.floor(Math.random() * 256);
-        this.#green = color ? color[1] : Math.floor(Math.random() * 256);
-        this.#blue =  color? color[2] : Math.floor(Math.random() * 256);
+    constructor(enviroment){
+        this.#red = Math.floor(Math.random() * 256);
+        this.#green = Math.floor(Math.random() * 256);
+        this.#blue =  Math.floor(Math.random() * 256);
         this.enviroment = enviroment;
+    }
+
+    set setColor(color){
+        this.#red = color[0]
+        this.#green = color[1]
+        this.#blue = color[2]
     }
 
     get color(){
@@ -27,12 +33,13 @@ class Beatle{
         });
     }
 
+    //TESTAR PROCRIATE
     async procriate(beatle){
-        let myColor = this.color();
+        let myColor = this.color;
         let otherBeatleColor = beatle.color;
 
-        let myColorFragment = myColor.slice(-2);
-        let otherColorFragment = otherBeatleColor.slice(1);
+        let myColorFragment = myColor.slice(0,2);
+        let otherColorFragment = otherBeatleColor.slice(-1);
 
         let babyBeatleColor =  myColorFragment.concat(otherColorFragment);
 
