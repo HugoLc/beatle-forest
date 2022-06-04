@@ -20,28 +20,31 @@ class Beatle{
     }
 
     get fitness(){
-        return new Promise((resolve) =>{
+        // return new Promise((resolve) =>{
             let redCompared = this.#red > this.enviroment[0] ? (this.#red - this.enviroment[0]): (this.#red - this.enviroment[0])*-1;
             let greenCompared = this.#green > this.enviroment[1] ? (this.#green - this.enviroment[1]): (this.#green - this.enviroment[1])*-1;
             let blueCompared = this.#blue > this.enviroment[2] ? (this.#blue - this.enviroment[2]): (this.#blue - this.enviroment[2])*-1;
 
             let totalValue = redCompared + greenCompared + blueCompared;
 
-            resolve(100 - totalValue);
-        });
+            //resolve(100 - totalValue);
+            return(100 - totalValue);
+       // });
     }
 
     //TESTAR PROCRIATE
-    async procriate(beatle){
-        let myColor = this.color;
-        let otherBeatleColor = beatle.color;
+    procriate(beatle){
+        return new Promise((resolve)=>{
+            let myColor = this.color;
+            let otherBeatleColor = beatle.color;
 
-        let myColorFragment = myColor.slice(0,2);
-        let otherColorFragment = otherBeatleColor.slice(-1);
+            let myColorFragment = myColor.slice(0,2);
+            let otherColorFragment = otherBeatleColor.slice(-1);
 
-        let babyBeatleColor =  myColorFragment.concat(otherColorFragment);
+            let babyBeatleColor =  myColorFragment.concat(otherColorFragment);
 
-        return babyBeatleColor;
+            resolve(babyBeatleColor)
+        })
     }
 
     async mutate(){
