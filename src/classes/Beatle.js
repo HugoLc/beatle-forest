@@ -1,3 +1,4 @@
+const Pm = 5; //mutation probability
 class Beatle{
     #red;
     #green;
@@ -32,37 +33,42 @@ class Beatle{
        // });
     }
 
-    //TESTAR PROCRIATE
     procriate(beatle){
         return new Promise((resolve)=>{
-            let myColor = this.color;
-            let otherBeatleColor = beatle.color;
+            const myColor = this.color;
+            const otherBeatleColor = beatle.color;
 
-            let myColorFragment = myColor.slice(0,2);
-            let otherColorFragment = otherBeatleColor.slice(-1);
+            const myColorFragment = myColor.slice(0,2);
+            const otherColorFragment = otherBeatleColor.slice(-1);
 
             let babyBeatleColor =  myColorFragment.concat(otherColorFragment);
+            const mutationValue = Math.floor(Math.random() * 100)
+            if(mutationValue < Pm){
+                console.log("houve mutação");
+                babyBeatleColor = this.#mutate(babyBeatleColor)
+            }
 
             resolve(babyBeatleColor)
         })
     }
 
-    async mutate(){
+    async #mutate(babyColor){
         const indexOfChange = Math.floor(Math.random() * 3);
         
         switch (indexOfChange) {
             case 0:
-                this.#red = Math.floor(Math.random() * 256);
+                babyColor[0] = Math.floor(Math.random() * 256);
                 break;
             case 1:
-                this.#green = Math.floor(Math.random() * 256);
+                babyColor[1]= Math.floor(Math.random() * 256);
                 break;
             case 2:
-                this.#blue = Math.floor(Math.random() * 256);
+                babyColor[2] = Math.floor(Math.random() * 256);
                 break;
             default:
                 break;
         }
+        return babyColor;
     }
 
 }
