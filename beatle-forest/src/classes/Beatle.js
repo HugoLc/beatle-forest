@@ -74,4 +74,4 @@ class Beatle{
 
 }
 
-module.exports = Beatle;
+export default Beatle;

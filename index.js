@@ -148,36 +148,28 @@ async function main(){
         let topThree = population.slice(0,3)
         console.log( "topThree",topThree)
         newPopulation = await generateNewPopulation(topThree)
-        //population = [];
         console.log("newPopulation",newPopulation)
         population = newPopulation;
         newPopulation = []
         
-        /* newPopulation.forEach((e)=>{
-            console.log(e.color)
-        }) */
-
-        /* console.log(ctx.rgb(babyColor[0],babyColor[1],babyColor[2])(babyColor));
-
-        parents.forEach((element)=>{
-            console.log(ctx.rgb(element.color[0],element.color[1],element.color[2]).bold(element.color, element.fit,element.rank))
-        }) */
     }
-    console.log('saí')
     console.clear();
     console.log("Primeira população")
     firstPopulation.forEach((element)=>{
-        console.log(ctx.rgb(element.color[0],element.color[1],element.color[2]).bold(element.color, element.fit,element.rank))
+        const firstFitnessPercent = (element.fit*100)/255;
+        console.log(ctx.rgb(element.color[0],element.color[1],element.color[2]).bold(element.color, `\tfit: ${firstFitnessPercent.toFixed(2)}%`))
     }) 
 
     console.log("Última população")
     population.forEach((element)=>{
-        console.log(ctx.rgb(element.color[0],element.color[1],element.color[2]).bold(element.color, element.fit,element.rank))
+        const lastFitnessPercent = (element.fit*100)/255;
+        console.log(ctx.rgb(element.color[0],element.color[1],element.color[2]).bold(element.color, `\tfit: ${lastFitnessPercent.toFixed(2)}%`))
         
     }) 
     console.log(ctx.bgRgb(env[0],env[1],env[2])("env",env))
     console.log("E melhor elemento foi solecionado")
-    console.log(ctx.rgb(topBeatle.color[0],topBeatle.color[1],topBeatle.color[2]).bold(topBeatle.color, `fit: ${topBeatle.fit}%`, "rank", topBeatle.rank))
+    const fitnessPercent = (topBeatle.fit*100)/255;
+    console.log(ctx.rgb(topBeatle.color[0],topBeatle.color[1],topBeatle.color[2]).bold(topBeatle.color, `\tfit: ${fitnessPercent.toFixed(2)}%`))
     
 }
 
